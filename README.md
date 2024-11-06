@@ -40,26 +40,32 @@ Typical Configuration Example
 Storage Size: 500 GB
 Provisioned IOPS: 5,000 IOPS (you need higher performance for your application)
 Provisioned Throughput: 250 MBps (for high throughput)
+
 S3 Standard:
 Best for: Frequently accessed data with low latency and high throughput.
 Pricing: Higher storage cost compared to infrequent access and archive options, but very fast access.
 Use case: Web hosting, content delivery, big data analytics.
+
 S3 Intelligent-Tiering:
 Best for: Data with unknown or changing access patterns. Automatically moves data between frequent and infrequent access tiers.
 Pricing: You pay for the monitoring and automation charge, along with the storage in each tier (frequent access and infrequent access).
 Use case: Data that could be accessed frequently at times, but you aren’t sure about the access pattern.
+
 S3 Standard - Infrequent Access (IA):
 Best for: Data that is infrequently accessed but needs to be retrieved quickly when needed.
 Pricing: Lower storage cost than S3 Standard, but higher retrieval costs. You are charged per GB for both storage and access.
 Use case: Backup, disaster recovery, long-term storage.
+
 S3 One Zone - Infrequent Access (One Zone-IA):
 Best for: Data that is infrequently accessed and can be recreated if lost. This storage class stores data in a single availability zone, reducing cost.
 Pricing: Lower cost than standard IA, but lower durability because it's stored in a single zone.
 Use case: Secondary backups, or for less critical data.
+
 S3 Glacier Flexible Retrieval:
 Best for: Archival storage with retrieval times ranging from minutes to hours.
 Pricing: Very low storage cost, but retrieval has varying costs depending on how fast you need to access the data (Expedited, Standard, or Bulk).
 Use case: Long-term data archiving, backup, compliance data.
+
 S3 Glacier Deep Archive:
 Best for: Extremely low-cost archival storage with retrieval times in hours (typically 12 hours or more).
 Pricing: The most cost-effective storage option, but retrieval time is slower.
@@ -74,7 +80,7 @@ S3 Glacier Deep Archive: For long-term archiving where the data needs to be kept
 S3 Intelligent-Tiering: If you’re unsure about the access patterns for your data or if it changes over time.
 Management Features like S3 Object Lambda and S3 Glacier Instant Retrieval are useful if you have specific requirements, such as transforming data on retrieval or needing fast access to archived data.
 
-AWS Application Load Balancer (ALB) Pricing Breakdown
+     AWS Application Load Balancer (ALB) Pricing Breakdown
 When calculating the cost of an Application Load Balancer (ALB), several factors come into play, such as Load Balancer Capacity Units (LCUs), processed bytes, new connections, connection duration, requests per second, and rule evaluations. Below is a detailed breakdown of the options you provided.
     Number of Application Load Balancers (ALBs):
 ALBs are priced based on the number of load balancers you deploy. For each ALB, AWS charges a fixed rate per hour (this is typically the primary cost for ALBs).
