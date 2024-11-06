@@ -1,16 +1,20 @@
 Tenancy Type:
 Shared Tenancy: This is the default option where EC2 instances run on physical hardware that is shared with other AWS customers.
-
 Dedicated Host: You can run your EC2 instances on physical servers that are dedicated to your use only.
-
 Dedicated Instances: These instances run on hardware that is physically isolated from other customers, but AWS manages the server.
 
 
- Instance Type:Instance pricing varies widely based on the instance type you select. Some common EC2 instance families include
+    Instance Type:
+Instance pricing varies widely based on the instance type you select. Some common EC2 instance families include
+
 t3.micro (low-cost, general-purpose)
+
 m5.large (balanced compute, memory, and network)
+
 c5.large (compute-optimized)
+
 r5.large (memory-optimized)
+
 p3.2xlarge (GPU instances, for ML or high-performance tasks)
 
 Conclusion (Best EC2 Setup for a General Application)
