@@ -69,11 +69,9 @@ Management Features like S3 Object Lambda and S3 Glacier Instant Retrieval are u
 
 Summary Table for S3 Storage Class Operations and Costs
 
-S3 Storage Class	                Storage Cost	      PUT, COPY, POST Requests	       Retrieval Cost	                        Data Returned by S3 Select	       Data Scanned by S3 Select
-S3 Standard	                        Highest	          Standard rate for uploads	       Standard retrieval	                       Example: 10 GB/month	            Example: 100 GB/month
-S3 One Zone-IA	                 Lower	Standard        rate for uploads	               Higher retrieval	                       Example: 3 GB/month	            Example: 50 GB/month
-S3 Glacier Flexible Retrieval	   Lowest storage	     Standard rate for uploads	       Low retrieval cost, depends on speed	     Example: 50 GB/month	            Example: 200 GB/month
-S3 Glacier Deep Archive	Lowest	 Standard              rate for uploads	               Slow retrieval cost	                     Example: 20 GB/month	            Example: 50 GB/month
-S3 Intelligent-Tiering	Varies	 Small                cost for monitoring           	Automatic transitions	                     Example: 5 GB/month	            Example: 100 GB/month
-
-
+S3 Storage Class	Storage Cost	PUT, COPY, POST Requests	Retrieval Cost	Data Returned by S3 Select	Data Scanned by S3 Select
+S3 Standard	Highest	Standard rate for uploads	Standard retrieval	Example: 10 GB/month	Example: 100 GB/month
+S3 One Zone-IA	Lower	Standard rate for uploads	Higher retrieval	Example: 3 GB/month	Example: 50 GB/month
+S3 Glacier Flexible Retrieval	Lowest storage	Standard rate for uploads	Low retrieval cost, depends on speed	Example: 50 GB/month	Example: 200 GB/month
+S3 Glacier Deep Archive	Lowest	Standard rate for uploads	Slow retrieval cost	Example: 20 GB/month	Example: 50 GB/month
+S3 Intelligent-Tiering	Varies	Small cost for monitoring	Automatic transitions	Example: 5 GB/month	Example: 100 GB/month
