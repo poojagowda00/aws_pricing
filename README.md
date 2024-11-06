@@ -67,11 +67,112 @@ S3 Glacier Deep Archive: For long-term archiving where the data needs to be kept
 S3 Intelligent-Tiering: If you’re unsure about the access patterns for your data or if it changes over time.
 Management Features like S3 Object Lambda and S3 Glacier Instant Retrieval are useful if you have specific requirements, such as transforming data on retrieval or needing fast access to archived data.
 
-Summary Table for S3 Storage Class Operations and Costs
+AWS Application Load Balancer (ALB) Pricing Breakdown
+When calculating the cost of an Application Load Balancer (ALB), several factors come into play, such as Load Balancer Capacity Units (LCUs), processed bytes, new connections, connection duration, requests per second, and rule evaluations. Below is a detailed breakdown of the options you provided.
+    Number of Application Load Balancers (ALBs):
+ALBs are priced based on the number of load balancers you deploy. For each ALB, AWS charges a fixed rate per hour (this is typically the primary cost for ALBs).
+Number of ALBs: 2
+   Load Balancer Capacity Units (LCUs):
+LCUs are used to measure the consumption of the resources by your ALB and are based on a few key metrics, such as processed bytes, connections, request rates, and rule evaluations.
+   
+   Processed Bytes
+This refers to the amount of data processed by the ALB for different targets such as Lambda functions, EC2 Instances, or IP addresses
+Processed Bytes (Lambda functions as targets): If your ALB forwards traffic to Lambda functions, AWS will calculate the total amount of data processed by the ALB in bytes.
+Example:
+Total processed bytes for Lambda functions: 5 GB
 
-S3 Storage Class	Storage Cost	PUT, COPY, POST Requests	Retrieval Cost	Data Returned by S3 Select	Data Scanned by S3 Select
-S3 Standard	Highest	Standard rate for uploads	Standard retrieval	Example: 10 GB/month	Example: 100 GB/month
-S3 One Zone-IA	Lower	Standard rate for uploads	Higher retrieval	Example: 3 GB/month	Example: 50 GB/month
-S3 Glacier Flexible Retrieval	Lowest storage	Standard rate for uploads	Low retrieval cost, depends on speed	Example: 50 GB/month	Example: 200 GB/month
-S3 Glacier Deep Archive	Lowest	Standard rate for uploads	Slow retrieval cost	Example: 20 GB/month	Example: 50 GB/month
-S3 Intelligent-Tiering	Varies	Small cost for monitoring	Automatic transitions	Example: 5 GB/month	Example: 100 GB/month
+   Processed Bytes for EC2 Instances and IP Addresses:
+Processed Bytes (EC2 Instances and IP addresses as targets): For EC2 instances or IP addresses, the data processed by the ALB will be charged as per the total number of bytes the ALB forwards.
+Example:
+Total processed bytes for EC2 targets: 100 GB
+ 
+   Number of New Connections:
+This refers to the number of new TCP connections initiated to the load balancer. The more new connections the ALB handles, the higher the cost.
+
+   Average Number of New Connections:
+The number of new connections that the ALB establishes per second or per minute will impact the LCU pricing.
+Example:
+New connections per ALB: 1,000 new connections per minute
+
+    Connection Duration:
+Connection duration is the average time that each new connection remains open. Shorter connection durations result in more connections being handled within a given time, which can affect costs.
+Average Connection Duration:
+If the average connection lasts less than 1 second, you will be charged for at least 1 second of connection duration.
+Example:
+Average connection duration: 5 seconds
+
+    Number of Requests per Second:
+This dimension tracks the number of requests processed by the ALB per second.
+   Average Number of Requests per Second:
+The ALB counts the number of HTTP(S) requests per second that it handles. More requests will increase LCU usage and, consequently, the cost.
+Example:
+Average requests per second per ALB: 500 requests/sec
+
+    Rule Evaluations per Request:
+Rule Evaluations are the number of rules the ALB evaluates for each request before routing the traffic to the appropriate target.
+Average Number of Rule Evaluations per Request:
+Each request can trigger one or more rules to be evaluated by the ALB before traffic is forwarded to the target. More rule evaluations mean higher LCU usage.
+Example:
+Rule evaluations per request: 5 rule evaluations per request
+
+
+AWS CodeBuild Pricing Breakdown
+Amazon CodeBuild pricing is based on several factors, including the compute type (instance type), the number of builds per month, and the average build duration. Here’s a breakdown of the options available for you
+ Amazon CodeBuild Compute Type:
+CodeBuild offers three compute types to choose from, each with different performance levels and associated costs:
+
+Build General1 (Small):
+
+vCPUs: 2
+Memory: 3.75 GB
+Pricing: Cheapest option, typically used for smaller builds.
+Build General2 (Medium):
+
+vCPUs: 4
+Memory: 7.5 GB
+Pricing: Ideal for medium-sized builds and more complex projects.
+Build General3 (Large):
+
+vCPUs: 8
+Memory: 16 GB
+Pricing: The most powerful instance type, used for large or resource-intensive builds.
+
+ Number of Builds per Month: example 100
+ Average Build Duration (Minutes): 10 mins
+ Compute Instance Type: General2 (Medium)
+
+      AWS CodeDeploy Pricing Breakdown
+Amazon CodeDeploy is a fully managed deployment service that automates software deployment to various compute services, such as EC2 instances, Lambda, and on-premises instances. The pricing is primarily based on two key factors:
+Number of on-premise instances: The number of on-premise servers or virtual machines where you are deploying code.
+Number of deployments: The number of code deployments you perform per month.
+
+On-Premise Instances: These are the physical servers or virtual machines located outside AWS where the application will be deployed. CodeDeploy tracks the number of on-premise instances and charges accordingly.
+Example:
+Number of on-premise instances: 5 instances
+
+Deployments: A deployment is a single operation where a new version of your application is deployed to one or more instances.
+Number of deployments per month: 10 deployments
+
+
+  AWS CodePipeline Pricing Breakdown
+Amazon CodePipeline is a continuous integration and continuous delivery (CI/CD) service for automating the build, test, and deploy phases of your release process. The pricing for CodePipeline is based on two key metrics:
+Number of Active Pipelines (V1): This applies to pipelines of type V1 that have been active for more than 30 days and have at least one code change run through them during the month.
+Number of Action Execution Minutes (V2): This applies to pipelines of type V2 and is charged based on the total action execution time.
+Active Pipelines (V1) are defined as pipelines that are used for more than 30 days and have at least one code change in the month.
+
+Pricing: AWS charges a fixed fee for each active pipeline of type V1.
+Example:
+Number of active pipelines (V1): 2 pipelines
+
+   Number of Action Execution Minutes (V2):
+For V2 pipelines, you are charged based on the total action execution duration, which is calculated from when an action starts executing until it reaches a completion state. The total duration is rounded up to the nearest minute.
+Free Tier: CodePipeline provides 100 free action execution minutes per month for pipelines of type V2.
+Action Types Excluded: Manual approval actions and custom actions do not incur charges for action execution minutes.
+Pricing: After using the free 100 minutes per month, you will be charged for each minute of execution.
+Example:
+Action execution minutes for V2 pipelines: 150 minutes in total for all V2 pipelines.
+
+
+
+
+
